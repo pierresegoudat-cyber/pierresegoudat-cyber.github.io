@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Premier Site</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur mon site</h1>
+        <nav>
+            <a href="#accueil">Accueil</a>
+            <a href="#apropos">À propos</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="accueil">
+            <h2>Accueil</h2>
+            <p>Ceci est mon premier site web créé avec mon propre code !</p>
+        </section>
+
+        <section id="apropos">
+            <h2>À propos</h2>
+            <p>Présentez-vous ici...</p>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Email : votre@email.com</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Mon Site Web</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat IA</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+    }
+    #chat {
+      border: 1px solid #ccc;
+      padding: 10px;
+      height: 300px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+    }
+    input {
+      width: 75%;
+      padding: 8px;
+    }
+    button {
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Parler avec l’IA</h2>
+
+<div id="chat"></div>
+
+<input id="message" placeholder="Écris ton message">
+<button onclick="sendMessage()">Envoyer</button>
+
+<script>
+async function sendMessage() {
+  const input = document.getElementById("message");
+  const chat = document.getElementById("chat");
+
+  if (input.value.trim() === "") return;
+
+  chat.innerHTML += "<p><b>Toi :</b> " + input.value + "</p>";
+
+  const response = await fetch("https://pierresegoudat-cyber.github.io/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message: input.value })
+  });
+
+  const data = await response.json();
+  chat.innerHTML += "<p><b>IA :</b> " + data.reply + "</p>";
+
+  input.value = "";
+}
+</script>
+
+</body>
+</html>
